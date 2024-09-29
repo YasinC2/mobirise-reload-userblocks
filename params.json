@@ -1,0 +1,14 @@
+{
+  "name": "yasinc2-reload-userblocks",
+  "version": "1.0.0",
+  "minAppVersion": "5.0.0",
+  "ampCompatible": false,
+  "appScript": true,
+  "coreScript": false,
+  "dependencies": [],
+  "components": [],
+
+  "title": "YasinC2 Reload Userblocks",
+  "description": "Helps to reload all your userblocks list",
+  "largeCover": "cover.webp"
+}
