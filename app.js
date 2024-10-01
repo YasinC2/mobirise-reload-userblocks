@@ -28,7 +28,7 @@ defineM(
                 cancel: function () {},
               });
             } else {
-              app.alertDlg("Error!!!!!!!!!");
+              app.alertDlg("Error!!");
             }
           });
 
