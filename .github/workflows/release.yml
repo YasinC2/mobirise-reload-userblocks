@@ -13,6 +13,11 @@ jobs:
     name: Create Downloadable Mobirise Extension
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # This ensures that the full Git history is checked out, not just the latest commit
+
       - name: Create a release with a custom name
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
