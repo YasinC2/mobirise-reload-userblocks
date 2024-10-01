@@ -31,6 +31,9 @@ jobs:
         run: zip -r yasinc2-reload-userblocks.mbrext ./* -x ".git/*" ".github/*" "README.md" "LICENSE"
       
       - name: Upload asset to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
         run: |
           TAG_NAME=${GITHUB_REF#refs/tags/}
           gh release upload $TAG_NAME yasinc2-reload-userblocks.mbrext
