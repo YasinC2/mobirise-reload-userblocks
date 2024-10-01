@@ -1,6 +1,6 @@
 {
   "name": "yasinc2-reload-userblocks",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "minAppVersion": "5.0.0",
   "ampCompatible": false,
   "appScript": true,
