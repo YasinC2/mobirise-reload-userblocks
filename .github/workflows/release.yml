@@ -5,20 +5,18 @@ on:
     tags:
     - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Create Downloadable Mobirise Extension
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Set up GitHub CLI
-        run: |
-          sudo apt-get install -y gh
-          gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create a release with a custom name
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
         run: |
           TAG_NAME=${GITHUB_REF#refs/tags/}
           RELEASE_NAME="Release for $TAG_NAME"
