@@ -1,0 +1,33 @@
+name: Build Mobirise Extension
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  release:
+    name: Create Downloadable Mobirise Extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up GitHub CLI
+        run: |
+          sudo apt-get install -y gh
+          gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create a release with a custom name
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          RELEASE_NAME="Release for $TAG_NAME"
+          gh release create $TAG_NAME --title "$RELEASE_NAME" --notes "Custom release for tag $TAG_NAME"  --generate-notes
+
+      - name: Create Mobirise Extension File
+        run: zip -r yasinc2-reload-userblocks.mbrext ./* -x ".git/*" ".github/*" "README.md" "LICENSE"
+      
+      - name: Upload asset to release
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          gh release upload $TAG_NAME yasinc2-reload-userblocks.mbrext
